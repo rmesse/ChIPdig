@@ -1,0 +1,4 @@
+H3K4me3_1	H3K4me3_ChIP_1.bam	H3K4me3_inp_1.bam	H3K4me3	green
+H3K4me3_2	H3K4me3_ChIP_2.bam	H3K4me3_inp_2.bam	H3K4me3	green
+H3K36me3_1	H3K36me3_ChIP_1.bam	H3K36me3_inp_1.bam	H3K36me3	brown
+H3K36me3_2	H3K36me3_ChIP_2.bam	H3K36me3_inp_2.bam	H3K36me3	brown

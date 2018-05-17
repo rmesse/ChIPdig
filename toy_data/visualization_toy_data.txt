@@ -1,0 +1,2 @@
+H3K4me3	H3K4me3.bedgraph	red
+H3K36me3	H3K36me3.bedgraph	blue

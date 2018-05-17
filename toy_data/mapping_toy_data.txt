@@ -1,0 +1,8 @@
+H3K4me3_inp_1_subset.fastq
+H3K4me3_inp_2_subset.fastq
+H3K4me3_IP_1_subset.fastq
+H3K4me3_IP_2_subset.fastq
+H3K36me3_inp_1_subset.fastq
+H3K36me3_inp_2_subset.fastq
+H3K36me3_IP_1_subset.fastq
+H3K36me3_IP_2_subset.fastq
