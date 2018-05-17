@@ -34,6 +34,7 @@ Other necessary packages may be installed with these commands:
 •	install.packages("circlize") <br>
 
 To load ChIPdig, simply navigate to the folder downloaded from the repository and open any of the following files using RStudio: “server.R”, “global.R”, or “ui.R”. Then, in the RStudio console, click on the “Run App” button. If any of the packages necessary to run ChIPdig is not installed, this will be done automatically.  
+
 A tutorial (ChIPdig_tutorial.pdf) explaining how to use the tool is included, along with a folder containing toy data enabling the user to easily test ChIPdig before analyzing his own samples.
 
 Please contact me for questions and suggestions: rmesse@bu.edu. 
