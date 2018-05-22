@@ -140,6 +140,9 @@ shinyServer(function(input,output,session){
         output$warning3 <- renderTable(rv$data_frame_processing_example, include.colnames=FALSE) 
       } 
       if (sample_list!="ncol_not_5" & sample_list!="missing_values" & sample_list!="bam_missing") {
+        output$warning1 <- renderText(" ")
+        output$warning2 <- renderUI(NULL)
+        output$warning3 <- renderUI(NULL)
         output$sample_list <- renderTable(sample_list)
         rv$sample_list <- sample_list
         output$dupl_reads_remove <- renderUI(checkboxInput("dupl_reads_remove", "Remove duplicate reads" , value = FALSE))
@@ -167,18 +170,25 @@ shinyServer(function(input,output,session){
     if (input$first_choice == "1") {
       updateTabsetPanel(session, "inTabset",selected = "map")
       if (is.null(input$dir)) {} else {setwd(parseDirPath(volumes, directory()))}
-      
       inFile <- input$file_input
       path <- inFile$datapath
       fastq_list <- fastq_list_import(path,input$second_choice)
-      
-      
       if (fastq_list=="ncol_not_1") {
-        output$warning_mapping <- renderText("Error loading sample list. Text file must have only 1 columns.")
+        output$warning_mapping <- renderText("Error loading sample list. Text file must have only 1 column.")
         
       }
-      
-      if (fastq_list!="ncol_not_1" ) {
+      if (fastq_list=="ncol_not_2") {
+        output$warning_mapping <- renderText("Error loading sample list. Text file must have only 2 columns.")
+        
+      }
+      if (fastq_list=="missing_values") {
+        output$warning_mapping <- renderText("Error loading sample list. Missing values. All fields in the tab-delimited text file describing samples must be non-empty.")
+      }
+      if (fastq_list=="file_missing") {
+        output$warning_mapping <- renderText("Error loading sample list. At least one file not found in the input directory. Make sure to provide the correct file names.")
+      } 
+      if (fastq_list!="ncol_not_1" & fastq_list!="ncol_not_2" & fastq_list!="missing_values" & fastq_list!="file_missing") {
+        output$warning_mapping <- renderText(" ")
         output$text2 <- renderUI(NULL); output$text3 <- renderUI(NULL); output$text4 <- renderUI(NULL)
         output$singleread_exp_input_example <- renderUI(NULL);output$pairedend_exp_input_example <- renderUI(NULL)
         output$text5 <- renderUI(h5("Read preprocessing can be used to prepare the input sequence files prior to alignment. Removal of sequence segnments corresponding to adapters and full low quality reads is supported. Preprocessing is not required."))
@@ -196,9 +206,6 @@ shinyServer(function(input,output,session){
         rv$fastq_list <- fastq_list
         output$file_input <- renderUI(NULL)
       }
-      
-       
-      
     }
     if (input$first_choice == "4") {
       updateTabsetPanel(session, "inTabset",selected = "heatmaps")
@@ -224,6 +231,7 @@ shinyServer(function(input,output,session){
           if (proceed==0) {
             output$warning1_h <- renderText("Error loading sample list. At least one file not found in the input directory. Make sure to provide the correct file names.")
           } else {
+            output$warning1_h <- renderText("")
             output$text6 <- renderUI(NULL); output$bedgraph_tab_example <- renderUI(NULL)
             colnames(sample_list) <- c("SampleID","File","Color")
             sample_list$File <- as.character(sample_list$File)
