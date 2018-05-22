@@ -5,19 +5,52 @@ fastq_list_import <- function(fastq_list_path, second_choice) {
     if (ncol(fastq_list)!=1) {
       return("ncol_not_1")
     } 
+    if (sum(fastq_list=="")>0) {
+      return("missing_values")
+    }
     fastq_list <- within(fastq_list, SampleName <- seq(1,nrow(fastq_list)))
     fastq_list <- within(fastq_list, SampleName <- paste("Sample_",SampleName,sep = ""))
     colnames(fastq_list) <- c("FileName", "SampleName")
     fastq_list$FileName <- as.character(fastq_list$FileName)
+    files <- c(fastq_list[,1])  
+    for (i in 1:length(files)) {
+      temp <- length(list.files(pattern = files[i] ))
+      if (i==1) {
+        proceed <- temp
+      } else {
+        proceed <- temp * proceed
+      }
+    }
+    if (proceed==0) {
+      return("file_missing")
+    }
+    return(fastq_list)
   } else {
-    
+    if (ncol(fastq_list)!=2) {
+      return("ncol_not_2")
+    }
+    if (sum(fastq_list=="")>0) {
+      return("missing_values")
+    }
     fastq_list <- within(fastq_list, SampleName <- seq(1,nrow(fastq_list)))
     fastq_list <- within(fastq_list, SampleName <- paste("Sample_",SampleName,sep = ""))
     colnames(fastq_list) <- c("FileName1","FileName2" ,"SampleName")
     fastq_list$FileName1 <- as.character(fastq_list$FileName1)
     fastq_list$FileName2 <- as.character(fastq_list$FileName2)
+    files <- c(fastq_list[,1],fastq_list[,2])  
+    for (i in 1:length(files)) {
+      temp <- length(list.files(pattern = files[i] ))
+      if (i==1) {
+        proceed <- temp
+      } else {
+        proceed <- temp * proceed
+      }
+    }
+    if (proceed==0) {
+      return("file_missing")
+    }
+    return(fastq_list)
   }
-  return(fastq_list)
 }
 
 
