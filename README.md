@@ -1,3 +1,5 @@
+ 10.5281/zenodo.3345788 
+
 # ChIPdig
 
 ChIPdig is a tool designed for the bulk analysis of ChIP-seq data comprising multiple samples. Its capabilities are organized into four analysis modules: <br>
