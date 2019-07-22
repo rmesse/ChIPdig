@@ -1,4 +1,4 @@
- 10.5281/zenodo.3345788 
+<a href="https://zenodo.org/badge/latestdoi/133856449"><img src="https://zenodo.org/badge/133856449.svg" alt="DOI"></a>
 
 # ChIPdig
 
